@@ -3,6 +3,18 @@
 All notable changes to Strum Fighter are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.3.1] — 2026-06-19
+
+### Fixed
+- **Crash on the run-ending hit.** When an incoming enemy bolt landed the final
+  hull point, its `onArrive()` callback ran `endRun()` synchronously from inside
+  `weapons.update()`'s effect loop — that tears the game down (`sdk.end()` →
+  `cleanup()` → `weapons.dispose()` → `reset()`), emptying the `effects` array
+  mid-iteration. The loop then dereferenced a now-undefined slot and threw
+  `Cannot read properties of undefined (reading 'dispose')`. `update()` now
+  snapshots each effect and guards against re-entrant teardown, `dispose()` is
+  idempotent, and `reset()` is null-safe.
+
 ## [0.3.0] — 2026-06-12
 
 Ear-training — enemies can voice their chord, and the letters can fade or vanish.

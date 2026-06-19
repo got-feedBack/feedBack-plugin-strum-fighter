@@ -22,6 +22,7 @@ function makeDotTexture(T) {
 
 export function createWeapons(T, scene, camera) {
   const effects = [];
+  let disposed = false;
   const gBeam = new T.BoxGeometry(1, 1, 1); // unit; scaled per beam
   const gShard = new T.BoxGeometry(0.5, 0.5, 0.95);
   const dotTex = makeDotTexture(T);
@@ -257,17 +258,32 @@ export function createWeapons(T, scene, camera) {
   }
 
   function update(dt) {
+    if (disposed) return;
     for (let i = effects.length - 1; i >= 0; i--) {
-      if (!effects[i].update(dt)) { effects[i].dispose(); effects.splice(i, 1); }
+      // Capture the effect up front: an effect's update() can re-enter and
+      // mutate `effects` synchronously. The enemy bolt's onArrive() lands the
+      // killing hull hit, which runs endRun() → sdk.end() → cleanup() →
+      // dispose() → reset() and empties this array mid-loop. Without the
+      // snapshot + guards below, `effects[i]` is then undefined and the
+      // `.dispose()` call throws.
+      const e = effects[i];
+      if (!e) continue;
+      if (!e.update(dt)) {
+        if (disposed) return;            // teardown ran inside update()
+        if (effects[i] === e) effects.splice(i, 1);
+        e.dispose();
+      }
     }
   }
 
   function reset() {
-    for (const e of effects) e.dispose();
+    for (const e of effects) if (e) e.dispose();
     effects.length = 0;
   }
 
   function dispose() {
+    if (disposed) return;
+    disposed = true;
     reset();
     gBeam.dispose();
     gShard.dispose();
