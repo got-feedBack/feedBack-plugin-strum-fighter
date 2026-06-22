@@ -11,16 +11,79 @@
     "scoring": "chord",
     "thumbnail": "thumb.png",
     "modifiers": [
-      { "id": "difficulty", "label": "Difficulty", "default": "medium", "values": ["easy", "medium", "hard"] },
-      { "id": "length", "label": "Waves", "default": "normal", "values": ["short", "normal", "long"] },
-      { "id": "livery", "label": "Livery", "default": "auto", "values": ["auto", "default", "ace", "squad"] },
-      { "id": "labels", "label": "Chord labels", "default": "on", "values": ["on", "fade", "off"] },
-      { "id": "chord_sound", "label": "Enemy chord sound", "default": "off", "values": ["off", "on"] },
-      { "id": "music", "label": "Music", "default": "on", "values": ["on", "off"] }
+      {
+        "id": "difficulty",
+        "label": "Difficulty",
+        "default": "medium",
+        "values": [
+          "easy",
+          "medium",
+          "hard"
+        ]
+      },
+      {
+        "id": "length",
+        "label": "Waves",
+        "default": "normal",
+        "values": [
+          "short",
+          "normal",
+          "long"
+        ]
+      },
+      {
+        "id": "livery",
+        "label": "Livery",
+        "default": "auto",
+        "values": [
+          "auto",
+          "default",
+          "ace",
+          "squad"
+        ]
+      },
+      {
+        "id": "labels",
+        "label": "Chord labels",
+        "default": "on",
+        "values": [
+          "on",
+          "fade",
+          "off"
+        ]
+      },
+      {
+        "id": "chord_sound",
+        "label": "Enemy chord sound",
+        "default": "off",
+        "values": [
+          "off",
+          "on"
+        ]
+      },
+      {
+        "id": "music",
+        "label": "Music",
+        "default": "on",
+        "values": [
+          "on",
+          "off"
+        ]
+      }
     ],
     "unlocks": [
-      { "id": "skin_ace",   "label": "Ace livery",   "xp": 250 },
-      { "id": "skin_squad", "label": "Squadron livery", "xp": 1000 }
+      {
+        "id": "skin_ace",
+        "label": "Ace livery",
+        "xp": 250
+      },
+      {
+        "id": "skin_squad",
+        "label": "Squadron livery",
+        "xp": 1000
+      }
     ]
-  }
+  },
+  "category": "game",
+  "description": "Fighting-game-style strumming minigame."
 }
