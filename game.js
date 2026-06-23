@@ -46,9 +46,17 @@
 
   // ── Minigame registration (late-bind to the SDK; queue if it's not up) ──
   function postSpec(spec) {
-    if (window.slopsmithMinigames && window.slopsmithMinigames.register) {
-      window.slopsmithMinigames.register(spec);
+    // Prefer the post-rename SDK (#537); fall back to the legacy global for
+    // hosts that predate the slopsmith→feedBack rename.
+    const mg = window.feedBackMinigames || window.slopsmithMinigames;
+    if (mg && mg.register) {
+      mg.register(spec);
     } else {
+      // SDK not up yet — queue under both pending-queue names so whichever
+      // host (pre- or post-rename) drains its own queue and picks us up. The
+      // host's register() is keyed on spec.id, so being drained from both is
+      // harmless.
+      (window.__feedBackMinigamesPending = window.__feedBackMinigamesPending || []).push(spec);
       (window.__slopsmithMinigamesPending = window.__slopsmithMinigamesPending || []).push(spec);
     }
   }
