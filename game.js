@@ -25,7 +25,7 @@
   // Bump BUILD with every module change so a normal reload refetches the ES
   // modules (their import URLs are otherwise uncached). Keep in sync with
   // plugin.json "version".
-  const BUILD = '0.3.0';
+  const BUILD = '0.3.3';
   const MODULES = `/api/plugins/${PLUGIN_ID}/assets/modules/`;
   const mod = (name) => import(`${MODULES}${name}?v=${BUILD}`);
   // Three.js is vendored in core (pinned r170); fall back to CDN if absent.

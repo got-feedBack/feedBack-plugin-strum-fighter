@@ -3,6 +3,22 @@
 All notable changes to Strum Fighter are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.3.3] — 2026-06-24
+
+### Fixed
+- **Chords never registered during boss fights.** The strum-onset detector
+  required the input level to fall below an absolute floor (a moment of near
+  silence) before it would accept the next strum. Boss waves turn on continuous
+  backing music (`setIntensity(1)`), which pinned the measured input level above
+  that floor for the whole fight, so the detector never saw "quiet", never fired
+  `onStrum()`, and every boss chord was silently dropped (regular waves were fine
+  because the level dipped between strums). The detector now tracks a rolling
+  background level and fires on a sharp rise *above* that background — immune to a
+  high-but-steady floor — with a fast-attack guard so slow music swells aren't
+  mistaken for strums, and a warm-start so the opening frame can't false-trigger.
+- **NaN input reading could brick detection for a run.** A non-finite
+  `inputLevel` is now coerced to 0 instead of poisoning the rolling-average state.
+
 ## [0.3.1] — 2026-06-19
 
 ### Fixed
