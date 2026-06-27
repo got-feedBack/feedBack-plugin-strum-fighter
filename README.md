@@ -21,7 +21,7 @@ song or chart required.
 
 - **Slopsmith desktop app** with your guitar plugged in and an input device selected.
   Chord detection runs chart-free on the native audio engine
-  (`window.slopsmithDesktop.audio.scoreChord`), which only exists in the desktop build. In a
+  (`window.feedBackDesktop.audio.scoreChord`), which only exists in the desktop build. In a
   browser-only Slopsmith the game shows a "needs the desktop app" panel instead of running.
 - The **Minigames** plugin (provides the hub + SDK). Strum Fighter registers itself with it.
 

@@ -12,7 +12,7 @@
 // lets the game show a graceful "needs desktop" panel otherwise.
 
 function bridge() {
-  return (typeof window !== 'undefined' && window.slopsmithDesktop && window.slopsmithDesktop.audio) || null;
+  return (typeof window !== 'undefined' && window.feedBackDesktop && window.feedBackDesktop.audio) || null;
 }
 
 export function hasEngine() {
