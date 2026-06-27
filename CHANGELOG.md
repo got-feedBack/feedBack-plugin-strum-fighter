@@ -3,6 +3,15 @@
 All notable changes to Strum Fighter are documented here. Format follows
 [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.3.4] — 2026-06-27
+
+### Fixed
+- **Desktop engine no longer undetected after the bridge rename.** `audio-input.js`
+  now reads `window.feedBackDesktop` with a fallback to the legacy
+  `window.slopsmithDesktop`, so the game detects the JUCE engine on desktop builds
+  that still expose the old bridge name (got-feedback/feedBack-desktop#40). Bumped
+  `BUILD`/version so the cached ES module is refetched on reload.
+
 ## [0.3.3] — 2026-06-24
 
 ### Fixed

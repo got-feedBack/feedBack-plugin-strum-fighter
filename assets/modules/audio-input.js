@@ -12,7 +12,11 @@
 // lets the game show a graceful "needs desktop" panel otherwise.
 
 function bridge() {
-  return (typeof window !== 'undefined' && window.feedBackDesktop && window.feedBackDesktop.audio) || null;
+  // Back-compat: the host renamed window.slopsmithDesktop → window.feedBackDesktop
+  // (got-feedback/feedBack-desktop#40). Fall back to the legacy name so the game
+  // detects the engine on desktop builds that still expose the old bridge.
+  const host = (typeof window !== 'undefined' && (window.feedBackDesktop || window.slopsmithDesktop)) || null;
+  return (host && host.audio) || null;
 }
 
 export function hasEngine() {
