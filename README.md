@@ -1,6 +1,6 @@
 # Strum Fighter
 
-A first-person cockpit **chord-shooter** minigame for [Slopsmith](https://github.com/got-feedback/feedback).
+A first-person cockpit **chord-shooter** minigame for [Slopsmith](https://github.com/got-feedback/feedBack).
 
 ![Strum Fighter — cockpit view: hyperspace starfield, the "STRUM Dm" prompt, and the reticle locked on a Dm fighter](screenshots/strum-fighter.png)
 
