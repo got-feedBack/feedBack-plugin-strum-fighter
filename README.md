@@ -1,6 +1,6 @@
 # Strum Fighter
 
-A first-person cockpit **chord-shooter** minigame for [Slopsmith](https://github.com/got-feedback/feedback).
+A first-person cockpit **chord-shooter** minigame for [feedBack](https://github.com/got-feedBack/feedBack).
 
 ![Strum Fighter — cockpit view: hyperspace starfield, the "STRUM Dm" prompt, and the reticle locked on a Dm fighter](screenshots/strum-fighter.png)
 
@@ -19,10 +19,10 @@ song or chart required.
 
 ## Requirements
 
-- **Slopsmith desktop app** with your guitar plugged in and an input device selected.
+- **feedBack desktop app** with your guitar plugged in and an input device selected.
   Chord detection runs chart-free on the native audio engine
   (`window.feedBackDesktop.audio.scoreChord`), which only exists in the desktop build. In a
-  browser-only Slopsmith the game shows a "needs the desktop app" panel instead of running.
+  browser-only feedBack the game shows a "needs the desktop app" panel instead of running.
 - The **Minigames** plugin (provides the hub + SDK). Strum Fighter registers itself with it.
 
 No `note_detect` dependency — chord scoring is independent of the note-detection plugin.
@@ -57,8 +57,8 @@ No `note_detect` dependency — chord scoring is independent of the note-detecti
 
 ## Architecture
 
-A standard Slopsmith minigame: a `minigame` block in `plugin.json` + a JS spec registered
-with `window.slopsmithMinigames`. Entry point `game.js` loads Three.js (vendored in core at
+A standard feedBack minigame: a `minigame` block in `plugin.json` + a JS spec registered
+with `window.feedBackMinigames` (legacy alias `window.slopsmithMinigames`). Entry point `game.js` loads Three.js (vendored in core at
 `/static/vendor/three/`) and the ES modules under `assets/modules/`, then runs the game loop.
 
 | Module | Responsibility |
